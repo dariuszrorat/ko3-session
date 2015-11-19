@@ -2,7 +2,7 @@
 
 defined('SYSPATH') or die('No direct script access.');
 
-class Kohana_Session_Handler_Database implements SessionHandlerInterface
+class Kohana_Session_Handler_Database
 {
 
     protected $_connection;
@@ -19,15 +19,14 @@ class Kohana_Session_Handler_Database implements SessionHandlerInterface
      */
     public function register()
     {
-        if (version_compare(PHP_VERSION, '5.4.0') >= 0)
-        {
-            session_set_save_handler($this, true);
-        } else
-        {
             session_set_save_handler(
-                    array($this, 'open'), array($this, 'close'), array($this, 'read'), array($this, 'write'), array($this, 'destroy'), array($this, 'gc')
+                    array($this, 'open'),
+                    array($this, 'close'),
+                    array($this, 'read'),
+                    array($this, 'write'),
+                    array($this, 'destroy'),
+                    array($this, 'gc')
             );
-        }
     }
 
     /**
@@ -35,7 +34,7 @@ class Kohana_Session_Handler_Database implements SessionHandlerInterface
      */
     public function open($save_path, $session_id)
     {
-        // NOOP
+        // do nothing
         return true;
     }
 
@@ -44,7 +43,7 @@ class Kohana_Session_Handler_Database implements SessionHandlerInterface
      */
     public function close()
     {
-        // NOOP
+        // do nothing
         return true;
     }
 
@@ -97,7 +96,7 @@ class Kohana_Session_Handler_Database implements SessionHandlerInterface
     }
 
     /**
-     * {@inheritdoc}
+     *
      */
     public function write($session_id, $session_data)
     {
