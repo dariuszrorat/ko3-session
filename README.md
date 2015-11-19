@@ -64,9 +64,9 @@ return array(
         'name' => 'session_mysql',
         'encrypted' => False,
         'hostname' => 'localhost',
-        'database' => 'mojastrona',
+        'database' => 'mydb',
         'username' => 'root',
-        'password' => 'root',
+        'password' => '',
         'schema' =>
         'CREATE TABLE sessions (' .
         'id int(10) unsigned NOT NULL AUTO_INCREMENT,' .
@@ -82,9 +82,9 @@ return array(
         'name' => 'session_postgresql',
         'encrypted' => False,
         'hostname' => 'localhost',
-        'database' => 'finance',
+        'database' => 'mydb',
         'username' => 'postgres',
-        'password' => 'postgres',
+        'password' => '',
         'schema' =>
         'CREATE TABLE sessions' .
         '(' .
