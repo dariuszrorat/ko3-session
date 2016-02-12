@@ -16,6 +16,14 @@ return array(
         'database' => 15,
         'lifetime' => 3600,
     ),
+    'SSDB' => array(
+        'name' => 'session_ssdb',
+        'encrypted' => False,
+        'host' => '127.0.0.1',
+        'port' => 8888,
+        'timeout' => 2000,
+        'lifetime' => 3600,
+    ),
     'sqlite' => array(
         'name' => 'session_sqlite',
         'encrypted' => False,

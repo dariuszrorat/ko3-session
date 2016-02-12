@@ -22,14 +22,17 @@ require_once Kohana::find_file('vendor/predis', 'autoload');
 ```
 No need to install Redis PHP extension module.
 
+The SSDB driver uses SSDB PHP library from ssdb.io
+and must be installed in vendor/SSDB
+
 ## Usage
 
 Copy:
 ```
-  session/*.php to Your application/classes/session/*.php
-  session/handler/database.php to Your application/classes/session/handler/database.php
-  kohana/session/*.php to application/classes/kohana/session/*.php
-  kohana/session/handler/database.php to Your application/classes/kohana/session/handler/database.php
+  Session/*.php to Your application/classes/Session/*.php
+  Session/Handler/*.php to Your application/classes/Session/Handler/*.php
+  Kohana/Session/*.php to application/classes/Kohana/Session/*.php
+  Kohana/Session/Handler/*.php to Your application/classes/Kohana/Session/Handler/*.php
   config/session.php to application/config/session.php
 ```
 ## Config
@@ -51,6 +54,14 @@ return array(
         'host' => '127.0.0.1',
         'port' => 6379,
         'database' => 15,
+        'lifetime' => 3600,
+    ),
+    'SSDB' => array(
+        'name' => 'session_ssdb',
+        'encrypted' => False,
+        'host' => '127.0.0.1',
+        'port' => 8888,
+        'timeout' => 2000,
         'lifetime' => 3600,
     ),
     'sqlite' => array(
