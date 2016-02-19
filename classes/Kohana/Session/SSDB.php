@@ -14,7 +14,7 @@ class Kohana_Session_SSDB extends Session_Common
 {
 
     /**
-     * Constructs the redis session driver. This method cannot be invoked externally. The redis session driver must
+     * Constructs the SSDB session driver. This method cannot be invoked externally. The SSDB session driver must
      * be instantiated using the `Session::instance()` method.
      *
      * @param   array  $config  config
