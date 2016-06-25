@@ -1,3 +1,3 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Session_Sqlite extends Kohana_Session_Sqlite {}
+class Session_File extends Kohana_Session_File {}

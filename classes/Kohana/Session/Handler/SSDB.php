@@ -2,7 +2,7 @@
 
 defined('SYSPATH') or die('No direct script access.');
 
-class Kohana_Session_Handler_SSDB
+class Kohana_Session_Handler_SSDB implements SessionHandlerInterface
 {
 
     protected $_connection;
@@ -19,14 +19,18 @@ class Kohana_Session_Handler_SSDB
      */
     public function register()
     {
+        if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+            session_set_save_handler($this, true);
+        } else {
             session_set_save_handler(
-                    array($this, 'open'),
-                    array($this, 'close'),
-                    array($this, 'read'),
-                    array($this, 'write'),
-                    array($this, 'destroy'),
-                    array($this, 'gc')
+                array($this, 'open'),
+                array($this, 'close'),
+                array($this, 'read'),
+                array($this, 'write'),
+                array($this, 'destroy'),
+                array($this, 'gc')
             );
+        }
     }
 
     /**
@@ -61,15 +65,12 @@ class Kohana_Session_Handler_SSDB
      */
     public function read($session_id)
     {
-        $now = time();
-        $expires = $now + $this->_ttl;
-
         if (($serialized = $this->_connection->get('sess_'.$session_id)) !== NULL)
         {
             $data = unserialize($serialized);
-            if ($data['expires'] < $expires)
+            if ((time() - $data['last_active']) < $this->_ttl)
             {
-                return $data['data'];
+                return $data['contents'];
             }
             else
             {
@@ -86,14 +87,11 @@ class Kohana_Session_Handler_SSDB
     public function write($session_id, $session_data)
     {
         $now = time();
-        $expires = $now + $this->_ttl;
-
+        file_put_contents('foo.txt', json_encode($session_data));
         $data = array(
-                'data'          => $session_data,
-                'last_activity' => $now,
-                'expires'       => $expires
+                'contents'    => $session_data,
+                'last_active' => $now,
             );
-
 
         $this->_connection->set('sess_'.$session_id, serialize($data));
 

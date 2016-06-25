@@ -10,7 +10,7 @@ defined('SYSPATH') or die('No direct script access.');
  * @copyright  (c) 2015 Dariusz Rorat
  */
 
-class Kohana_Session_Redis extends Session_Common
+class Kohana_Session_Redis extends Session_Nosql
 {
 
     /**
@@ -21,7 +21,7 @@ class Kohana_Session_Redis extends Session_Common
      */
     public function __construct(array $config, $id = null)
     {
-        require_once Kohana::find_file('vendor/predis', 'autoload');
+        include Kohana::find_file('vendor/predis', 'autoload');
 
         if (!interface_exists('SessionHandlerInterface'))
         {

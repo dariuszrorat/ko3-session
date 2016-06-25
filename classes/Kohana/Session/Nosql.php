@@ -3,14 +3,14 @@
 defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Common PHP session class.
+ * Nosql PHP session class.
  *
  * @package    Kohana
  * @category   Session
  * @author     Dariusz Rorat
  * @copyright  (c) 2015 Dariusz Rorat
  */
-abstract class Kohana_Session_Common extends Session
+abstract class Kohana_Session_Nosql extends Session
 {
 
     /**
