@@ -32,7 +32,7 @@ class Kohana_Session_File extends Session
 
 		parent::__construct($config, $id);
 
-		if (mt_rand(0, $this->_gc) === $this->_gc)
+		if (mt_rand(1, $this->_gc) === $this->_gc)
 		{
 			// Run garbage collection
 			// This will average out to run once every X requests
