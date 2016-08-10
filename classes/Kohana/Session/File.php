@@ -89,7 +89,7 @@ class Kohana_Session_File extends Session
 		chmod($dir, 0777);
 	    }
 
-            file_put_contents($dir.$file, $this->__toString(), LOCK_EX);
+            file_put_contents($dir.$file, $this->__toString());
 
 	    // Update the cookie with the new session id
 	    Cookie::set($this->_name, $this->_session_id, $this->_lifetime);
