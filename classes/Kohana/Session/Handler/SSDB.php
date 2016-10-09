@@ -87,7 +87,6 @@ class Kohana_Session_Handler_SSDB implements SessionHandlerInterface
     public function write($session_id, $session_data)
     {
         $now = time();
-        file_put_contents('foo.txt', json_encode($session_data));
         $data = array(
                 'contents'    => $session_data,
                 'last_active' => $now,
